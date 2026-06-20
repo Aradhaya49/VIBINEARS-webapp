@@ -1,0 +1,244 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-black: #09090B;
+    --bg-dark: #18181B;
+    --neon-purple: #8B5CF6;
+    --neon-blue: #3B82F6;
+    --neon-pink: #EC4899;
+    --neon-cyan: #22D3EE;
+    --neon-gold: #FACC15;
+  }
+
+  * {
+    @apply border-white/10;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-bg-black text-text-white font-sans antialiased;
+    background-image: 
+      radial-gradient(ellipse at 20% 50%, rgba(139, 92, 246, 0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 20%, rgba(59, 130, 246, 0.06) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 80%, rgba(236, 72, 153, 0.05) 0%, transparent 50%);
+    background-attachment: fixed;
+  }
+
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-bg-dark;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-neon-purple/50 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-neon-purple;
+  }
+
+  ::selection {
+    @apply bg-neon-purple/30 text-white;
+  }
+}
+
+@layer components {
+  /* Glass card */
+  .glass-card {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+
+  .glass-card-hover {
+    @apply glass-card transition-all duration-300 hover:bg-white/8 hover:border-neon-purple/30;
+  }
+
+  /* Neon button */
+  .btn-neon {
+    @apply relative px-6 py-3 rounded-xl font-semibold text-white overflow-hidden transition-all duration-300;
+    background: linear-gradient(135deg, #8B5CF6, #3B82F6);
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
+  }
+
+  .btn-neon:hover {
+    box-shadow: 0 0 30px rgba(139, 92, 246, 0.7), 0 0 60px rgba(139, 92, 246, 0.3);
+    transform: translateY(-1px);
+  }
+
+  .btn-neon:active {
+    transform: translateY(0);
+  }
+
+  .btn-ghost {
+    @apply px-6 py-3 rounded-xl font-semibold text-white/80 border border-white/10 transition-all duration-300 hover:bg-white/5 hover:border-white/20 hover:text-white;
+  }
+
+  .btn-danger {
+    @apply relative px-6 py-3 rounded-xl font-semibold text-white overflow-hidden transition-all duration-300;
+    background: linear-gradient(135deg, #EF4444, #DC2626);
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.4);
+  }
+
+  .btn-danger:hover {
+    box-shadow: 0 0 30px rgba(239, 68, 68, 0.7);
+    transform: translateY(-1px);
+  }
+
+  /* Neon input */
+  .input-neon {
+    @apply w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/30 outline-none transition-all duration-300;
+  }
+
+  .input-neon:focus {
+    @apply border-neon-purple/60 bg-white/8;
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15), 0 0 20px rgba(139, 92, 246, 0.1);
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #8B5CF6, #3B82F6, #EC4899);
+  }
+
+  .gradient-text-gold {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #FACC15, #F59E0B);
+  }
+
+  .gradient-text-cyan {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #22D3EE, #3B82F6);
+  }
+
+  /* Neon border */
+  .neon-border {
+    @apply border border-neon-purple/40;
+    box-shadow: 0 0 10px rgba(139, 92, 246, 0.2), inset 0 0 10px rgba(139, 92, 246, 0.05);
+  }
+
+  .neon-border-pink {
+    @apply border border-neon-pink/40;
+    box-shadow: 0 0 10px rgba(236, 72, 153, 0.2), inset 0 0 10px rgba(236, 72, 153, 0.05);
+  }
+
+  .neon-border-cyan {
+    @apply border border-neon-cyan/40;
+    box-shadow: 0 0 10px rgba(34, 211, 238, 0.2), inset 0 0 10px rgba(34, 211, 238, 0.05);
+  }
+
+  /* Online indicator */
+  .online-dot {
+    @apply w-2.5 h-2.5 rounded-full bg-neon-green relative;
+  }
+
+  .online-dot::after {
+    content: '';
+    @apply absolute inset-0 rounded-full bg-neon-green animate-ping;
+  }
+
+  /* Skeleton loader */
+  .skeleton {
+    @apply bg-white/5 rounded-lg overflow-hidden relative;
+  }
+
+  .skeleton::after {
+    content: '';
+    @apply absolute inset-0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+
+  /* VIP badge */
+  .vip-badge {
+    @apply px-2 py-0.5 rounded-full text-xs font-bold;
+    background: linear-gradient(135deg, #FACC15, #F59E0B);
+    color: #09090B;
+    box-shadow: 0 0 10px rgba(250, 204, 21, 0.4);
+  }
+
+  /* Tier badges */
+  .tier-bronze { @apply text-amber-600; }
+  .tier-silver { @apply text-gray-300; }
+  .tier-gold { background: linear-gradient(135deg, #FACC15, #F59E0B); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .tier-platinum { background: linear-gradient(135deg, #E2E8F0, #94A3B8, #E2E8F0); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+  /* Waveform bar */
+  .waveform-bar {
+    @apply w-1 rounded-full bg-neon-purple;
+    animation: wave 1.5s ease-in-out infinite;
+  }
+
+  /* Particle */
+  .particle {
+    @apply absolute rounded-full pointer-events-none;
+    animation: particle linear infinite;
+  }
+
+  /* Map marker pulse */
+  .map-pulse {
+    @apply absolute rounded-full;
+    animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
+
+  /* Gradient border wrapper */
+  .gradient-border {
+    @apply relative rounded-2xl p-px;
+    background: linear-gradient(135deg, rgba(139,92,246,0.5), rgba(59,130,246,0.3), rgba(236,72,153,0.5));
+  }
+
+  .gradient-border > * {
+    @apply rounded-2xl;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .bg-white\/8 {
+    background-color: rgba(255, 255, 255, 0.08);
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .neon-glow-purple {
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+  }
+
+  .neon-glow-pink {
+    box-shadow: 0 0 20px rgba(236, 72, 153, 0.5);
+  }
+
+  .neon-glow-cyan {
+    box-shadow: 0 0 20px rgba(34, 211, 238, 0.5);
+  }
+
+  .neon-glow-gold {
+    box-shadow: 0 0 20px rgba(250, 204, 21, 0.5);
+  }
+
+  .neon-glow-red {
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
+  }
+}
